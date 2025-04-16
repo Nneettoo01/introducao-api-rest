@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Nneettoo01/introducao-api-rest/issues"
   },
-  "homepage": "https://github.com/Nneettoo01/introducao-api-rest#readme"
+  "homepage": "https://github.com/Nneettoo01/introducao-api-rest#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
 }
