@@ -26,7 +26,7 @@ app.post("/criarUsuario", (req, res) => {
 
   // Adicionar o usuario no banco de dados fake(lista)
   const novoUsuario = {
-    id: usuarios.length +1, nome: "Carlos", email:"carlos@email.com"
+    id: usuarios[usuarios.length - 1].id + 1, nome: nome, email: email
   }
 usuarios.push(novoUsuario)
   
