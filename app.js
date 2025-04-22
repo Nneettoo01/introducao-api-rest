@@ -33,6 +33,44 @@ usuarios.push(novoUsuario)
   res.send(usuarios)
 })
 
+app.put("/usuario/:id", (req, res)=>{
+  const { id } = req.params
+  const { novoNome, novoEmail } = req.body
+
+  const indice = usuarios.findIndex((usuario)=>{
+    return usuario.id == id
+})
+ usuarios[indice].nome = novoNome
+ usuarios[indice].email = novoEmail
+
+ res.send(usuarios)
+
+})
+
+
+
+// Deletar usuario
+app.delete("/usuario/:id", (req, res) => {
+  const { id } = req.params
+
+  const index = usuarios.findIndex((usuario)=>{
+    return usuario.id === id
+})
+
+// if(index === -1){
+//   res.send("Usuario nao encontrado!")
+// }
+
+usuarios.splice(index, 1)
+
+ res.send(usuarios)
+})
+
+
+
+
+
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
