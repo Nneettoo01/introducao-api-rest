@@ -1,24 +1,18 @@
-import express from "express"
-const app = express()
-const port = 3000
+import express from "express";
+const app = express();
+const port = 3000;
 
-app.use(express.json())
+app.use(express.json());
 
 const usuarios = [
-  {id: 1, nome: 'João', email:"joao@email.com"},
-  {id: 2, nome: 'Ana', email:"ana@email.com"}
-]
- 
-
+  { id: 1, nome: "João", email: "joao@email.com" },
+  { id: 2, nome: "Ana", email: "ana@email.com" },
+];
 
 // Rota inicio
-app.get('/', (req, res) => {
-  res.send('Bem vindo a minha API')
-})
-
-
-
-
+app.get("/", (req, res) => {
+  res.send("Bem vindo a minha API");
+});
 
 // Rota cria usuario
 app.post("/criarUsuario", (req, res) => {
@@ -26,51 +20,45 @@ app.post("/criarUsuario", (req, res) => {
 
   // Adicionar o usuario no banco de dados fake(lista)
   const novoUsuario = {
-    id: usuarios[usuarios.length - 1].id + 1, nome: nome, email: email
-  }
-usuarios.push(novoUsuario)
-  
-  res.send(usuarios)
-})
+    id: usuarios[usuarios.length - 1].id + 1,
+    nome: nome,
+    email: email,
+  };
+  usuarios.push(novoUsuario);
 
-app.put("/usuario/:id", (req, res)=>{
-  const { id } = req.params
-  const { novoNome, novoEmail } = req.body
+  res.send(usuarios);
+});
 
-  const indice = usuarios.findIndex((usuario)=>{
-    return usuario.id == id
-})
- usuarios[indice].nome = novoNome
- usuarios[indice].email = novoEmail
+app.put("/usuario/:id", (req, res) => {
+  const { id } = req.params;
+  const { novoNome, novoEmail } = req.body;
 
- res.send(usuarios)
+  const indice = usuarios.findIndex((usuario) => {
+    return usuario.id == id;
+  });
+  usuarios[indice].nome = novoNome;
+  usuarios[indice].email = novoEmail;
 
-})
-
-
+  res.send(usuarios);
+});
 
 // Deletar usuario
 app.delete("/usuario/:id", (req, res) => {
-  const { id } = req.params
+  const { id } = req.params;
 
-  const index = usuarios.findIndex((usuario)=>{
-    return usuario.id === id
-})
+  const index = usuarios.findIndex((usuario) => {
+    return usuario.id === id;
+  });
 
-// if(index === -1){
-//   res.send("Usuario nao encontrado!")
-// }
+  if (index === -1) {
+    res.send("Usuario nao encontrado!");
+  }
 
-usuarios.splice(index, 1)
+  usuarios.splice(index, 1);
 
- res.send(usuarios)
-})
-
-
-
-
-
+  res.send(usuarios);
+});
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+  console.log(`Example app listening on port ${port}`);
+});
